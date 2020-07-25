@@ -1,18 +1,22 @@
 // array for to do item
 let todoItems = [];
 
+
 function addTodo(text) {
+  const todo = {
+    text,
+    check: false,
+    id: Date.now(),
+  };
 
+  todoItems.push(todo);
+  console.log(todoItems);
 }
 
-function removeTodo() {
+const form = document.querySelector('.')
 
-}
+function removeTodo() {}
 
-function updateTodo() {
+function updateTodo() {}
 
-}
-
-function clearTodo() {
-
-}
+function clearTodo() {}
