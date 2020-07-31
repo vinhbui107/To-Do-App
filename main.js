@@ -2,12 +2,16 @@
 let todoItems = [];
 
 function renderTodo(todo) {
+  localStorage.setItem("todoItemsRef", JSON.stringify(todoItems));
+
   const list = document.querySelector(".js-todo-list");
   const item = document.querySelector(`[data-key='${todo.id}']`);
 
   if (todo.deleted) {
     // remove the item form the DOM
     item.remove();
+
+    if (todoItems.length === 0) list.innerHTML = "";
     return;
   }
 
@@ -111,3 +115,13 @@ if (list) {
   });
 }
 // END MARK AND DELETE TODO
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ref = localStorage.getItem("todoItemsRef");
+  if (ref) {
+    todoItems = JSON.parse(ref);
+    todoItems.forEach((t) => {
+      renderTodo(t);
+    });
+  }
+});
